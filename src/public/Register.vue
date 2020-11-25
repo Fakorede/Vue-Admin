@@ -1,5 +1,5 @@
 <template>
-  <form class="form-signin" @submit.prevent="submit">
+  <form class="form-signin" @submit.prevent="register">
     <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
 
     <label for="firstName" class="sr-only">First Name</label>
@@ -74,18 +74,15 @@ export default {
 
     const router = useRouter();
 
-    const submit = async () => {
-        console.log('works...');
+    const register = async () => {
 
-        const response = await axios.post('http://localhost:8000/api/register', {
+        await axios.post('register', {
             first_name: firstName.value,
             last_name: lastName.value,
             email: email.value,
             password: password.value,
             confirm_password: confirmPassword.value,
         });
-
-        console.log(response);
 
         await router.push('/login');
     }
@@ -96,6 +93,7 @@ export default {
       email,
       password,
       confirmPassword,
+      register
     };
   },
 };

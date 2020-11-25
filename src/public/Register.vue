@@ -1,30 +1,104 @@
 <template>
-    <form class="form-signin">
-        <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+  <form class="form-signin" @submit.prevent="submit">
+    <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
 
-        <label for="firstName" class="sr-only">First Name</label>
-        <input type="text" id="firstName" class="form-control" placeholder="First Name" required>
+    <label for="firstName" class="sr-only">First Name</label>
+    <input
+      type="text"
+      id="firstName"
+      class="form-control"
+      placeholder="First Name"
+      v-model="firstName"
+      required 
+    />
 
-        <label for="lastName" class="sr-only">Last Name</label>
-        <input type="text" id="lastName" class="form-control" placeholder="Last Name" required>
+    <label for="lastName" class="sr-only">Last Name</label>
+    <input
+      type="text"
+      id="lastName"
+      class="form-control"
+      placeholder="Last Name"
+      v-model="lastName"
+      required 
+    />
 
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input
+      type="email"
+      id="inputEmail"
+      class="form-control"
+      placeholder="Email address"
+      v-model="email"
+      required 
+    />
 
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input
+      type="password"
+      id="inputPassword"
+      class="form-control"
+      placeholder="Password"
+      v-model="password"
+      required 
+    />
 
-        <label for="confirmPassword" class="sr-only">Confirm Password</label>
-        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+    <label for="confirmPassword" class="sr-only">Confirm Password</label>
+    <input
+      type="password"
+      id="confirmPassword"
+      class="form-control"
+      placeholder="Confirm Password"
+      v-model="confirmPassword"
+      required 
+    />
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-    </form>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      Register
+    </button>
+  </form>
 </template>
 
 <script>
-    export default {
-        name: "Register"
+import { ref } from "vue";
+import axios from "axios";
+import { useRouter } from 'vue-router';
+
+export default {
+  name: "Register",
+  setup() {
+    const firstName = ref("");
+    const lastName = ref("");
+    const email = ref("");
+    const password = ref("");
+    const confirmPassword = ref("");
+
+    const router = useRouter();
+
+    const submit = async () => {
+        console.log('works...');
+
+        const response = await axios.post('http://localhost:8000/api/register', {
+            first_name: firstName.value,
+            last_name: lastName.value,
+            email: email.value,
+            password: password.value,
+            confirm_password: confirmPassword.value,
+        });
+
+        console.log(response);
+
+        await router.push('/login');
     }
+
+    return {
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+    };
+  },
+};
 </script>
 
 <style scoped>

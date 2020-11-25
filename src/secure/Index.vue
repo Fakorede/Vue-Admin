@@ -16,6 +16,7 @@ import { onMounted } from 'vue';
 import Nav from '@/components/Nav';
 import Menu from '@/components/Menu';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 export default {
   name: "Index",
@@ -24,9 +25,16 @@ export default {
    Menu
   },
   setup() {
+    const router = useRouter();
     onMounted(async () => {
-        const response = await axios.get('user');
-        console.log(response)
+        try {
+            const response = await axios.get('user');
+            console.log(response);
+        } catch(err) {
+            console.log(err);
+            await router.push('/login');
+        }
+        
     });
   }
 }

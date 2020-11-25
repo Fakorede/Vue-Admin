@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Register from '@/public/Register.vue';
-import Login from '@/public/Login.vue';
+import Register from '@/auth/Register.vue';
+import Login from '@/auth/Login.vue';
 import Index from '@/secure/Index.vue';
 import Dashboard from '@/secure/dashboard/Dashboard.vue';
+import Users from '@/secure/users/Users.vue';
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/register', component: Register },
@@ -12,6 +13,7 @@ const routes: Array<RouteRecordRaw> = [
       component: Index,
       children: [
         { path: '', component: Dashboard },
+        { path: '/users', component: Users },
       ]
   }
 ]

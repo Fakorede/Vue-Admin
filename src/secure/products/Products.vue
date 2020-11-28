@@ -33,52 +33,29 @@
             </tbody>
         </table>
     </div>
-
-    <nav>
-        <ul class="pagination">
-            <li class="page-item">
-                <a href="javascript:void(0)" class="page-link" @click="prev">Previous</a>
-            </li>
-            <li class="page-item">
-                <a href="javascript:void(0)" class="page-link" @click="next">Next</a>
-            </li>
-        </ul>
-    </nav>
+    <Paginator :last-page="lastPage" @page-changed="load($event)" />
 </template>
 
 <script lang="ts">
+    import Paginator from '@/secure/components/Paginator.vue';
     import { Entity } from '@/interfaces/entity';
     import { onMounted, ref } from "vue";
     import axios from "axios";
     export default {
         name: "Products",
+        components: { Paginator },
         setup() {
             const products = ref([]);
-            const page = ref(1);
             const lastPage = ref(0);
 
-            const load = async () => {
-                const response = await axios.get(`products?page=${page.value}`);
+            const load = async (page = 1) => {
+                const response = await axios.get(`products?page=${page}`);
 
                 products.value = response.data.data;
-                lastPage.value = response.data.meta.last_page
+                lastPage.value = response.data.meta.last_page;
             }
 
-            onMounted(load);
-
-            const next = async () => {
-                if(page.value === lastPage.value) return;
-
-                page.value++;
-                await load();
-            }
-
-            const prev = async () => {
-                if(page.value === 1) return;
-
-                page.value--;
-                await load();
-            }
+            onMounted(load);            
 
             const deleteProduct = async (id: number) => {
                 if(confirm('Are you sure you want to delete this record?')) {
@@ -89,9 +66,8 @@
 
             return {
                 products,
-                next,
-                prev,
-                deleteProduct
+                deleteProduct,
+                load
             }
         }
     }

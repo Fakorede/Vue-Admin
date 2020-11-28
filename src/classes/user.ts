@@ -3,9 +3,9 @@ import { Role } from './role';
 
 export class User implements Entity {
     id: number;
-    first_name: String;
-    last_name: String;
-    email: String;
+    first_name: string;
+    last_name: string;
+    email: string;
     role: Role;
     permissions: string[];
 

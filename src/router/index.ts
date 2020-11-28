@@ -5,6 +5,7 @@ import Index from '@/secure/Index.vue';
 import Dashboard from '@/secure/dashboard/Dashboard.vue';
 import Users from '@/secure/users/Users.vue';
 import CreateUser from '@/secure/users/CreateUser.vue';
+import UpdateUser from '@/secure/users/UpdateUser.vue';
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/register', component: Register },
@@ -17,6 +18,7 @@ const routes: Array<RouteRecordRaw> = [
         { path: '/dashboard', component: Dashboard },
         { path: '/users', component: Users },
         { path: '/users/create', component: CreateUser },
+        { path: '/users/:id/edit', component: UpdateUser },
       ]
   }
 ]

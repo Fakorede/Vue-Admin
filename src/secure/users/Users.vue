@@ -23,7 +23,7 @@
                     <td>{{ user.role.name }}</td>
                     <td>
                         <div class="btn-group mr-2">
-                            <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary">Edit</a>
+                            <router-link :to="`/users/${user.id}/edit`" class="btn btn-sm btn-outline-secondary">Edit</router-link>
                             <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" @click.prevent="deleteUser(user.id)">Delete</a>
                         </div>
                     </td>

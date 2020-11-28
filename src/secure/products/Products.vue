@@ -66,6 +66,7 @@
 
             return {
                 products,
+                lastPage,
                 deleteProduct,
                 load
             }

@@ -4,6 +4,7 @@ import Login from '@/auth/Login.vue';
 import Index from '@/secure/Index.vue';
 import Dashboard from '@/secure/dashboard/Dashboard.vue';
 import Users from '@/secure/users/Users.vue';
+import Profile from '@/secure/profile/Profile.vue';
 import CreateUser from '@/secure/users/CreateUser.vue';
 import UpdateUser from '@/secure/users/UpdateUser.vue';
 import Roles from '@/secure/roles/Roles.vue';
@@ -24,6 +25,7 @@ const routes: Array<RouteRecordRaw> = [
       children: [
         { path: '', redirect: '/dashboard' },
         { path: '/dashboard', component: Dashboard },
+        { path: '/profile', component: Profile },
         { path: '/users', component: Users },
         { path: '/users/create', component: CreateUser },
         { path: '/users/:id/edit', component: UpdateUser },

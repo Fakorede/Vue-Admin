@@ -12,6 +12,8 @@ import UpdateRole from '@/secure/roles/UpdateRole.vue';
 import Products from '@/secure/products/Products.vue';
 import CreateProduct from '@/secure/products/CreateProduct.vue';
 import UpdateProduct from '@/secure/products/UpdateProduct.vue';
+import Orders from '@/secure/orders/Orders.vue';
+import OrderItems from '@/secure/orders/OrderItems.vue';
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/register', component: Register },
@@ -31,6 +33,8 @@ const routes: Array<RouteRecordRaw> = [
         { path: '/products', component: Products },
         { path: '/products/create', component: CreateProduct },
         { path: '/products/:id/edit', component: UpdateProduct },
+        { path: '/orders', component: Orders },
+        { path: '/orders/:id', component: OrderItems },
       ]
   }
 ]

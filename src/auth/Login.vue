@@ -33,9 +33,8 @@ import { useRouter } from 'vue-router';
                     password: password.value,
                 });
 
-                // remove later
-                localStorage.setItem('token', response.data.token);
-                axios.defaults.headers['Authorization'] = `Bearer ${response.data.token}`;
+                // localStorage.setItem('token', response.data.token);
+                // axios.defaults.headers['Authorization'] = `Bearer ${response.data.token}`;
 
                 await router.push('/');
             }

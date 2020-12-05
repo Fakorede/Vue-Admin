@@ -67,7 +67,7 @@
                     email: email.value,
                 });
 
-                await store.dispatch('User/setUSER', response.data);
+                store.dispatch('User/setUser', response.data.data);
             }
 
             const updatePassword = async () => {
